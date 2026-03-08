@@ -5,4 +5,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/auth/', include('users.urls')),
     path('auth/', include('social_django.urls', namespace='social')),
+    path('api/chatbot/', include('chatbot.urls')),
 ]
