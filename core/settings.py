@@ -165,3 +165,4 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 LOGIN_REDIRECT_URL = '/api/auth/google/callback/'
+FRONTEND_URL = 'http://localhost:3000'
