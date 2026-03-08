@@ -89,7 +89,7 @@ class ResetPasswordView(APIView):
             return Response({'error': 'Invalid token'}, status=status.HTTP_400_BAD_REQUEST)
         except User.DoesNotExist:
             return Response({'error': 'Invalid request'}, status=status.HTTP_400_BAD_REQUEST)
-        class GoogleCallbackView(APIView):
+class GoogleCallbackView(APIView):
     def get(self, request):
         if request.user.is_authenticated:
             refresh = RefreshToken.for_user(request.user)
