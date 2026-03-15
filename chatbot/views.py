@@ -22,18 +22,31 @@ Follow these steps in order:
 5. Ask about their LinkedIn and GitHub profiles if they have them
 6. Ask about their available time per week for learning
 7. Ask about their preferred learning style (videos, reading, projects)
-8. Based on all answers, generate a detailed personalized learning plan
 
-The learning plan must include:
-- Recommended career path
-- Required skills list
-- Step by step learning roadmap (phases)
-- Estimated time for each phase
-- A message saying "Your personalized test will be generated based on this plan"
+After collecting all information, generate a learning plan in this EXACT JSON format:
+{
+  "career_path": "Job Title",
+  "level": "Beginner/Intermediate/Advanced",
+  "total_duration": "X months",
+  "skills": ["skill1", "skill2", "skill3"],
+  "phases": [
+    {
+      "phase": 1,
+      "title": "Phase Title",
+      "duration": "X weeks",
+      "topics": ["topic1", "topic2"],
+      "resources": ["resource1", "resource2"]
+    }
+  ],
+  "message": "Your personalized test will be generated based on this plan"
+}
 
-Always respond in the same language the user uses (Arabic or English).
-Be encouraging, professional, and friendly.
-Ask one or two questions at a time, not all at once.
+Rules:
+- Always respond in the same language the user uses (Arabic or English)
+- Be encouraging, professional, and friendly
+- Ask one or two questions at a time
+- Only generate the JSON plan after collecting ALL information
+- When generating the plan, output ONLY the JSON, nothing else
 """
 
 class ChatbotView(APIView):
@@ -61,7 +74,8 @@ class ChatbotView(APIView):
         # Get conversation history
         messages = ChatMessage.objects.filter(session=session).order_by('created_at')
         history = []
-        for msg in messages[:-1]:
+        messages_list = list(messages)
+        for msg in messages_list[:-1]:
             history.append({
                 'role': 'user' if msg.role == 'user' else 'model',
                 'parts': [msg.content]
@@ -70,7 +84,7 @@ class ChatbotView(APIView):
         # Generate AI response
         try:
             model = genai.GenerativeModel(
-                model_name='gemini-1.5-flash',
+                model_name='gemini-2.0-flash',
                 system_instruction=SYSTEM_PROMPT
             )
             chat = model.start_chat(history=history)
