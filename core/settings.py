@@ -168,3 +168,4 @@ AUTHENTICATION_BACKENDS = [
 
 LOGIN_REDIRECT_URL = '/api/auth/google/callback/'
 FRONTEND_URL = 'http://localhost:3000'
+GEMINI_API_KEY = os.getenv('GEMINI_API_KEY')
