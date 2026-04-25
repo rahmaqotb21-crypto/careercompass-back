@@ -46,6 +46,9 @@ INSTALLED_APPS = [
     'users',
     'social_django',
     'chatbot',
+    'skill_test',
+    'dashboard',
+    'careers',
 ]
 
 MIDDLEWARE = [
@@ -168,4 +171,5 @@ AUTHENTICATION_BACKENDS = [
 
 LOGIN_REDIRECT_URL = '/api/auth/google/callback/'
 FRONTEND_URL = 'http://localhost:3000'
-GEMINI_API_KEY = os.getenv('GEMINI_API_KEY')
+OPENROUTER_API_KEY = os.getenv('OPENROUTER_API_KEY')
+GROQ_API_KEY = os.getenv('GROQ_API_KEY')
