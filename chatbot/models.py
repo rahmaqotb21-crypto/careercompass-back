@@ -3,6 +3,7 @@ from django.conf import settings
 
 class ChatSession(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    name = models.CharField(max_length=100, default='New Chat')
     created_at = models.DateTimeField(auto_now_add=True)
     is_completed = models.BooleanField(default=False)
     learning_plan = models.TextField(null=True, blank=True)

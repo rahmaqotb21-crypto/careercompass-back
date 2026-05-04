@@ -22,5 +22,11 @@ class RegisterSerializer(serializers.ModelSerializer):
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['id', 'email', 'username']
+        fields = [
+            'id', 'email', 'username', 
+            'career_goal', 'current_level', 
+            'learning_style', 'hours_per_week',
+            'notify_weekly_progress', 'notify_new_courses', 'notify_daily_reminder',
+            'profile_photo_data'
+        ]
         

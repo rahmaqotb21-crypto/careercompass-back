@@ -108,6 +108,38 @@ class ProfileView(APIView):
         return error_response(serializer.errors)
 
 
+class UploadAvatarView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request):
+        avatar_file = request.data.get('avatar')
+        
+        if not avatar_file:
+            return error_response('Avatar file is required')
+        
+        # Validate file type
+        allowed_types = ['image/jpeg', 'image/png', 'image/jpg', 'image/gif', 'image/webp']
+        if avatar_file.content_type not in allowed_types:
+            return error_response('Invalid file type. Only JPG, PNG, GIF, and WebP are allowed.')
+        
+        # Validate file size (max 5MB)
+        if avatar_file.size > 5 * 1024 * 1024:
+            return error_response('File too large. Maximum size is 5MB.')
+        
+        # Read and store as base64
+        import base64
+        try:
+            image_data = base64.b64encode(avatar_file.read()).decode('utf-8')
+            request.user.profile_photo_data = f"data:{avatar_file.content_type};base64,{image_data}"
+            request.user.save(update_fields=['profile_photo_data'])
+            
+            return success_response('Avatar uploaded successfully', {
+                'avatar_url': request.user.profile_photo_data
+            })
+        except Exception as e:
+            return error_response(f'Failed to upload avatar: {str(e)}')
+
+
 class ChangePasswordView(APIView):
     permission_classes = [IsAuthenticated]
 

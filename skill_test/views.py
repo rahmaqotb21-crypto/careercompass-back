@@ -9,6 +9,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
 from chatbot.models import ChatSession
+from chatbot.plan_parser import parse_learning_plan
 from .models import SkillTest, Question
 
 
@@ -29,7 +30,9 @@ class GenerateTestView(APIView):
         if not session.learning_plan:
             return Response({'success': False, 'error': 'No learning plan found'}, status=400)
 
-        learning_plan = json.loads(session.learning_plan)
+        learning_plan = parse_learning_plan(session.learning_plan)
+        if not learning_plan:
+            return Response({'success': False, 'error': 'Learning plan could not be parsed'}, status=400)
 
         # عمل test جديد
         test = SkillTest.objects.create(
@@ -173,5 +176,87 @@ class SubmitTestView(APIView):
                 'correct_answers': correct,
                 'total_questions': test.total_questions,
                 'results': results
+            }
+        })
+
+
+class SaveLocalTestView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request):
+        track = request.data.get('track', 'Data Science')
+        skills_scores = request.data.get('skills', {})
+        overall_score = request.data.get('overall', 0)
+
+        if not skills_scores:
+            return Response({'success': False, 'error': 'No skills data provided'}, status=400)
+
+        # Get or create a session for this test
+        session = ChatSession.objects.filter(user=request.user, is_completed=True).first()
+        if not session:
+            session = ChatSession.objects.create(
+                user=request.user,
+                name=f'{track} Test Session'
+            )
+
+        # Create test record in database
+        test = SkillTest.objects.create(
+            user=request.user,
+            session=session,
+            is_submitted=True,
+            score=overall_score,
+            total_questions=len(skills_scores) * 5,
+            correct_answers=round((overall_score / 100) * (len(skills_scores) * 5))
+        )
+
+        return Response({
+            'success': True,
+            'data': {
+                'test_id': test.id,
+                'score': test.score,
+                'track': track,
+                'skills': skills_scores
+            }
+        })
+
+
+class TestHistoryView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        tests = SkillTest.objects.filter(user=request.user, is_submitted=True).order_by('-created_at')
+        
+        results = []
+        for test in tests:
+            # Get track and skills from session's learning plan
+            track = 'General'
+            skills_data = {}
+            
+            if test.session and test.session.learning_plan:
+                plan = parse_learning_plan(test.session.learning_plan)
+                if plan:
+                    track = plan.get('career_path', 'General')
+                    plan_skills = plan.get('skills', [])
+                    # Distribute score across skills
+                    if plan_skills and test.score:
+                        per_skill = test.score / len(plan_skills)
+                        for skill in plan_skills:
+                            skills_data[skill] = round(per_skill)
+            
+            results.append({
+                'test_id': test.id,
+                'track': track,
+                'score': test.score,
+                'correct_answers': test.correct_answers,
+                'total_questions': test.total_questions,
+                'skills': skills_data,
+                'date': test.created_at.strftime('%Y-%m-%d %H:%M'),
+            })
+
+        return Response({
+            'success': True,
+            'data': {
+                'tests': results,
+                'count': len(results)
             }
         })

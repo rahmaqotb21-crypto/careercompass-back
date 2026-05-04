@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'skill_test',
     'dashboard',
     'careers',
+    'learningplans',
 ]
 
 MIDDLEWARE = [
@@ -170,6 +171,7 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 LOGIN_REDIRECT_URL = '/api/auth/google/callback/'
-FRONTEND_URL = 'http://localhost:3000'
+FRONTEND_URL = os.getenv('FRONTEND_URL', 'http://localhost:5173')
 OPENROUTER_API_KEY = os.getenv('OPENROUTER_API_KEY')
 GROQ_API_KEY = os.getenv('GROQ_API_KEY')
+GEMINI_API_KEY = os.getenv('GEMINI_API_KEY') or os.getenv('GOOGLE_API_KEY')
