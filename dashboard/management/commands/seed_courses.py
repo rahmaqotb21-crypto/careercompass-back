@@ -26,7 +26,7 @@ RECOMMENDED_COURSES = [
         'title': 'Python for Data Science & AI',
         'tags': ['Python', 'Pandas', 'NumPy'],
         'rating': '4.8',
-        'url': 'https://www.coursera.org/learn/python-for-data-science-ai',
+        'url': 'https://www.coursera.org/learn/python-for-applied-data-science-ai',
     },
     {
         'skill': 'Python',
@@ -44,7 +44,7 @@ RECOMMENDED_COURSES = [
         'title': 'Intro to Python Programming',
         'tags': ['Python', 'Beginner', 'Free'],
         'rating': '4.9',
-        'url': 'https://www.kaggle.io/learn/python',
+        'url': 'https://www.kaggle.com/learn/python',
     },
     {
         'skill': 'SQL',
@@ -62,7 +62,7 @@ RECOMMENDED_COURSES = [
         'title': 'SQL for Data Science',
         'tags': ['SQL', 'Data Science', 'SQLite'],
         'rating': '4.6',
-        'url': 'https://www.coursera.org/learn/sql-data-science',
+        'url': 'https://www.coursera.org/learn/sql-for-data-science',
     },
     {
         'skill': 'SQL',
@@ -71,7 +71,7 @@ RECOMMENDED_COURSES = [
         'title': 'Intro to SQL',
         'tags': ['SQL', 'BigQuery', 'Free'],
         'rating': '4.8',
-        'url': 'https://www.kaggle.io/learn/sql',
+        'url': 'https://www.kaggle.com/learn/intro-to-sql',
     },
     {
         'skill': 'Excel',
@@ -80,7 +80,7 @@ RECOMMENDED_COURSES = [
         'title': 'Excel for Data Analysis',
         'tags': ['Excel', 'Dashboards', 'Formulas'],
         'rating': '4.6',
-        'url': 'https://www.linkedin.com/learning/excel-for-data-analysis',
+        'url': 'https://www.linkedin.com/learning/excel-data-analysis-fundamentals',
     },
     {
         'skill': 'Excel',
@@ -89,7 +89,7 @@ RECOMMENDED_COURSES = [
         'title': 'Excel Skills for Business',
         'tags': ['Excel', 'Business', 'Spreadsheets'],
         'rating': '4.7',
-        'url': 'https://www.coursera.org/specializations/excel-skills',
+        'url': 'https://www.coursera.org/specializations/excel',
     },
     {
         'skill': 'Excel',
@@ -98,7 +98,7 @@ RECOMMENDED_COURSES = [
         'title': 'Microsoft Excel - Data Visualization',
         'tags': ['Excel', 'Charts', 'Visualization'],
         'rating': '4.5',
-        'url': 'https://www.udemy.com/course/microsoft-excel-data-visualization/',
+        'url': 'https://www.udemy.com/course/microsoft-excel-data-analysis-and-dashboard-reporting/',
     },
     {
         'skill': 'Tableau',
@@ -107,7 +107,7 @@ RECOMMENDED_COURSES = [
         'title': 'Data Visualization with Tableau',
         'tags': ['Tableau', 'Charts', 'Dashboards'],
         'rating': '4.9',
-        'url': 'https://www.kaggle.io/learn/data-visualization',
+        'url': 'https://www.kaggle.com/learn/data-visualization',
     },
     {
         'skill': 'Tableau',
@@ -116,7 +116,7 @@ RECOMMENDED_COURSES = [
         'title': 'Data Visualization with Tableau',
         'tags': ['Tableau', 'Visualization', 'Business'],
         'rating': '4.7',
-        'url': 'https://www.coursera.org/learn/data-visualization-tableau',
+        'url': 'https://www.coursera.org/specializations/data-visualization',
     },
     {
         'skill': 'Statistics',
@@ -125,7 +125,7 @@ RECOMMENDED_COURSES = [
         'title': 'Statistics for Data Science',
         'tags': ['Statistics', 'Probability', 'Inference'],
         'rating': '4.7',
-        'url': 'https://www.edx.org/course/statistics-for-data-science',
+        'url': 'https://www.edx.org/learn/statistics/micromasters-mitx-statistics-and-data-science',
     },
     {
         'skill': 'JavaScript',
@@ -143,7 +143,7 @@ RECOMMENDED_COURSES = [
         'title': 'Introduction to Web Development',
         'tags': ['JavaScript', 'HTML', 'CSS'],
         'rating': '4.6',
-        'url': 'https://www.coursera.org/learn/web-development',
+        'url': 'https://www.coursera.org/learn/html-css-javascript-for-web-developers',
     },
     {
         'skill': 'Git',
@@ -179,7 +179,7 @@ RECOMMENDED_COURSES = [
         'title': 'Data Structures & Algorithms',
         'tags': ['Algorithms', 'LeetCode', 'Interview Prep'],
         'rating': '4.6',
-        'url': 'https://www.udemy.com/course/data-structures-algorithms-python/',
+        'url': 'https://www.udemy.com/course/python-for-data-structures-algorithms-and-interviews/',
     },
     {
         'skill': 'Figma',
@@ -188,7 +188,7 @@ RECOMMENDED_COURSES = [
         'title': 'UI/UX Design with Figma',
         'tags': ['Figma', 'UI Design', 'Prototyping'],
         'rating': '4.7',
-        'url': 'https://www.udemy.com/course/ui-ux-design-with-figma/',
+        'url': 'https://www.udemy.com/course/figma-ui-ux-design-advanced/',
     },
     {
         'skill': 'Figma',
@@ -197,7 +197,7 @@ RECOMMENDED_COURSES = [
         'title': 'Figma for Beginners',
         'tags': ['Figma', 'UI Design', 'Design System'],
         'rating': '4.6',
-        'url': 'https://www.coursera.org/learn/figma-for-beginners',
+        'url': 'https://www.coursera.org/learn/foundations-user-experience-design',
     },
     {
         'skill': 'Design',
@@ -215,7 +215,7 @@ RECOMMENDED_COURSES = [
         'title': 'Design Thinking',
         'tags': ['Design', 'Innovation', 'Problem Solving'],
         'rating': '4.5',
-        'url': 'https://www.linkedin.com/learning/design-thinking-fundamentals',
+        'url': 'https://www.linkedin.com/learning/design-thinking-understanding-the-process',
     },
     {
         'skill': 'CSS',
@@ -233,7 +233,7 @@ RECOMMENDED_COURSES = [
         'title': 'Responsive Web Design',
         'tags': ['CSS', 'HTML', 'Responsive'],
         'rating': '4.9',
-        'url': 'https://www.freecodecamp.org/learn/2022/responsive-web-design/',
+        'url': 'https://www.freecodecamp.org/learn/responsive-web-design/',
     },
 ]
 
